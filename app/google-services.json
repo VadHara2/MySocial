@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "637296773535",
+    "project_id": "social-network-1927c",
+    "storage_bucket": "social-network-1927c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637296773535:android:2f1897e892f92b587215aa",
+        "android_client_info": {
+          "package_name": "com.vadhara7.mysocialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637296773535-8v0qmucje9g1r18u27ef7gsbmu5h61de.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByCs7eL3KsK1gxmAUd8DqUWhyf0VERD0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637296773535-8v0qmucje9g1r18u27ef7gsbmu5h61de.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
