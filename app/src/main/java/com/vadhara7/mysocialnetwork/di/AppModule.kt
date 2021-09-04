@@ -5,6 +5,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.vadhara7.mysocialnetwork.R
+import com.vadhara7.mysocialnetwork.repositories.AuthRepository
+import com.vadhara7.mysocialnetwork.repositories.DefaultAuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +19,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository() = DefaultAuthRepository() as AuthRepository
 
     @Singleton
     @Provides

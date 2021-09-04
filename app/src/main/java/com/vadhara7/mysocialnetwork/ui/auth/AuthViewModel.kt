@@ -2,6 +2,7 @@ package com.vadhara7.mysocialnetwork.ui.auth
 
 import android.content.Context
 import android.util.Patterns
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -50,7 +51,7 @@ class AuthViewModel @Inject constructor(
             return
         }
         _registerStatus.postValue(Event(Resource.Loading()))
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             val result = repository.register(email, username, password)
             _registerStatus.postValue(Event(result))
         }
