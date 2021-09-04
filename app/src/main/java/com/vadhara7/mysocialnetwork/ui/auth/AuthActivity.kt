@@ -1,7 +1,8 @@
-package com.vadhara7.mysocialnetwork
+package com.vadhara7.mysocialnetwork.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vadhara7.mysocialnetwork.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
