@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var lastFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun makeCurrentFragment(fragment: Fragment) =
+    fun makeCurrentFragment(fragment: Fragment) =
         this.supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)
             commit()
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         val createPostFragment = CreatePostFragment()
         val profileFragment = ProfileFragment()
         val settingsFragment = SettingsFragment()
-
+        lastFragment = homeFragment
         makeCurrentFragment(homeFragment)
 
         binding.apply {

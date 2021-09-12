@@ -7,6 +7,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.vadhara7.mysocialnetwork.R
 import com.vadhara7.mysocialnetwork.repositories.AuthRepository
 import com.vadhara7.mysocialnetwork.repositories.DefaultAuthRepository
+import com.vadhara7.mysocialnetwork.repositories.DefaultMainRepository
+import com.vadhara7.mysocialnetwork.repositories.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +25,10 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAuthRepository() = DefaultAuthRepository() as AuthRepository
+
+    @Singleton
+    @Provides
+    fun provideMainRepository() = DefaultMainRepository() as MainRepository
 
     @Singleton
     @Provides

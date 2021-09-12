@@ -6,10 +6,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.vadhara7.mysocialnetwork.data.entities.User
 import com.vadhara7.mysocialnetwork.other.Resource
 import com.vadhara7.mysocialnetwork.other.safeCall
+import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
+@ActivityScoped
 class DefaultAuthRepository : AuthRepository {
 
     val auth = FirebaseAuth.getInstance()
