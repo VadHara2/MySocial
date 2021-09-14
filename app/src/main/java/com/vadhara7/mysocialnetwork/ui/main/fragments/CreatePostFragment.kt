@@ -22,6 +22,7 @@ import com.vadhara7.mysocialnetwork.databinding.FragmentCreatePostBinding
 import com.vadhara7.mysocialnetwork.other.EventObserver
 import com.vadhara7.mysocialnetwork.ui.main.MainActivity
 import com.vadhara7.mysocialnetwork.ui.main.viewmodels.CreatePostViewModel
+import com.vadhara7.mysocialnetwork.ui.slideUpViews
 import com.vadhara7.mysocialnetwork.ui.snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -85,8 +86,10 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
                     viewModel.createPost(uri, etPostDescription.text.toString())
                 } ?: snackbar(getString(R.string.error_no_image_chosen))
             }
-        }
 
+            slideUpViews(requireContext(), ivPostImage, btnSetPostImage, tilPostText, btnPost)
+
+        }
     }
 
     private fun subscribeToObservers() {
