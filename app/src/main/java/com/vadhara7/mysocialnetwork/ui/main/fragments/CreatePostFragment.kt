@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.canhub.cropper.*
 import com.vadhara7.mysocialnetwork.R
@@ -105,9 +106,7 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
                 onLoading = { createPostProgressBar.isVisible = true }
             ) {
                 createPostProgressBar.isVisible = false
-                val activity = requireActivity() as MainActivity
-                val homeFragment = HomeFragment()
-                activity.makeCurrentFragment(homeFragment)
+                findNavController().popBackStack()
             })
         }
     }
