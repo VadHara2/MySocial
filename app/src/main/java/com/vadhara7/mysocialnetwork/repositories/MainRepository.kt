@@ -11,4 +11,5 @@ interface MainRepository {
     suspend fun getUser(uid: String): Resource<User>
     suspend fun getPostsForFollows(): Resource<List<Post>>
     suspend fun toggleLikeForPost(post: Post): Resource<Boolean>
+    suspend fun deletePost(post: Post): Resource<Post>
 }
