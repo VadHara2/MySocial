@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.vadhara7.mysocialnetwork.data.entities.Post
+import com.vadhara7.mysocialnetwork.data.entities.User
 import com.vadhara7.mysocialnetwork.other.Resource
 import com.vadhara7.mysocialnetwork.other.safeCall
 import dagger.hilt.android.scopes.ActivityScoped
@@ -39,6 +40,26 @@ class DefaultMainRepository : MainRepository {
             )
             posts.document(postId).set(post).await()
             Resource.Success(Any())
+        }
+    }
+
+    override suspend fun getUsers(uids: List<String>) = withContext(Dispatchers.IO) {
+        safeCall {
+            val usersList = users.whereIn("uid", uids).orderBy("username").get().await()
+                .toObjects(User::class.java)
+            Resource.Success(usersList)
+        }
+    }
+
+    override suspend fun getUser(uid: String) = withContext(Dispatchers.IO) {
+        safeCall {
+            val user = users.document(uid).get().await().toObject(User::class.java)
+                ?: throw IllegalStateException()
+            val currentUid = FirebaseAuth.getInstance().uid!!
+            val currentUser = users.document(currentUid).get().await().toObject(User::class.java)
+                ?: throw IllegalStateException()
+            user.isFollowing = uid in currentUser.follows
+            Resource.Success(user)
         }
     }
 }
