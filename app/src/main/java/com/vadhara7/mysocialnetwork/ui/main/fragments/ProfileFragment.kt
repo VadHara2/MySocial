@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 open class ProfileFragment : BasePostFragment(R.layout.fragment_profile) {
-    private lateinit var binding: FragmentProfileBinding
+    protected lateinit var binding: FragmentProfileBinding
     override val postProgressBar: ProgressBar
         get() = binding.profilePostsProgressBar
     override val basePostViewModel: BasePostViewModel

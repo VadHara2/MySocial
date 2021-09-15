@@ -26,4 +26,12 @@
 
     <action android:id="@+id/globalActionToCreatePostFragment"
         app:destination="@id/createPostFragment" />
+    <fragment
+        android:id="@+id/othersProfileFragment2"
+        android:name="com.vadhara7.mysocialnetwork.ui.main.fragments.OthersProfileFragment"
+        android:label="OthersProfileFragment" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </fragment><action android:id="@+id/action_global_othersProfileFragment2" app:destination="@id/othersProfileFragment2"/>
 </navigation>
