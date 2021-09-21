@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.RequestManager
 import com.google.firebase.auth.FirebaseAuth
 import com.vadhara7.mysocialnetwork.adapters.PostAdapter
+import com.vadhara7.mysocialnetwork.adapters.UserAdapter
 import com.vadhara7.mysocialnetwork.other.EventObserver
 import com.vadhara7.mysocialnetwork.ui.main.dialogs.DeletePostDialog
+import com.vadhara7.mysocialnetwork.ui.main.dialogs.LikedByDialog
 import com.vadhara7.mysocialnetwork.ui.main.viewmodels.BasePostViewModel
 import com.vadhara7.mysocialnetwork.ui.snackbar
 import javax.inject.Inject
@@ -45,6 +47,11 @@ abstract class BasePostFragment(
                     }
                 }.show(childFragmentManager, null)
             }
+
+            setOnLikedByClickListener { post ->
+                basePostViewModel.getUsers(post.likedBy)
+            }
+
         }
 
 
@@ -85,6 +92,7 @@ abstract class BasePostFragment(
                     val uid = FirebaseAuth.getInstance().uid!!
                     postAdapter.posts[index].apply {
                         this.isLiked = isLiked
+                        isLiking = false
                         if (isLiked) {
                             likedBy += uid
                         } else {
@@ -99,6 +107,14 @@ abstract class BasePostFragment(
                 onError = { snackbar(it) }
             ) { deletedPost ->
                 postAdapter.posts -= deletedPost
+            })
+
+            likedByUsers.observe(viewLifecycleOwner, EventObserver(
+                onError = { snackbar(it) }
+            ) { users ->
+                val userAdapter = UserAdapter(glide)
+                userAdapter.users = users
+                LikedByDialog(userAdapter).show(childFragmentManager, null)
             })
 
         }
